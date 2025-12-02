@@ -93,9 +93,9 @@
                 ];
                 $role_icons = [
                   'patient' => 'bx-user',
-                  'doctor' => 'bx-stethoscope',
-                  'hospital' => 'bx-hospital',
-                  'sales-rep' => 'bx-briefcase-alt-2'
+                  'doctor' => 'bx-plus-medical',
+                  'hospital' => 'bx-building',
+                  'sales-rep' => 'bx-briefcase'
                 ];
               ?>
               <div class="d-flex justify-content-center mb-3">
@@ -112,17 +112,17 @@
                 </div>
                 <div class="col-6 col-md-3">
                   <a href="/?role=doctor" class="btn btn-sm d-flex align-items-center justify-content-center w-100 <?php echo $role==='doctor' ? 'btn-primary' : 'btn-outline-primary'; ?>" style="border-radius: 10px; padding: 0.5rem 0.75rem;">
-                    <i class="bx bx-stethoscope me-1"></i> Doctor
+                    <i class="bx bx-plus-medical me-1"></i> Doctor
                   </a>
                 </div>
                 <div class="col-6 col-md-3">
                   <a href="/?role=hospital" class="btn btn-sm d-flex align-items-center justify-content-center w-100 <?php echo $role==='hospital' ? 'btn-primary' : 'btn-outline-primary'; ?>" style="border-radius: 10px; padding: 0.5rem 0.75rem;">
-                    <i class="bx bx-hospital me-1"></i> Hospital
+                    <i class="bx bx-building me-1"></i> Hospital
                   </a>
                 </div>
                 <div class="col-6 col-md-3">
                   <a href="/?role=sales-rep" class="btn btn-sm d-flex align-items-center justify-content-center w-100 <?php echo $role==='sales-rep' ? 'btn-primary' : 'btn-outline-primary'; ?>" style="border-radius: 10px; padding: 0.5rem 0.75rem;">
-                    <i class="bx bx-briefcase-alt-2 me-1"></i> Sales Rep
+                    <i class="bx bx-briefcase me-1"></i> Sales Rep
                   </a>
                 </div>
               </div>

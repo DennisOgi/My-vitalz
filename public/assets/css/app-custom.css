@@ -1,23 +1,23 @@
 /* MyVitalz Premium UI - Global Styles */
-/* EXACT COLORS FROM DOCTOR DASHBOARD: #696cff (primary) and #5f61e6 (secondary) */
+/* Updated brand color: #5155bc */
 :root{
-  --mv-primary: #696cff;
-  --mv-secondary: #5f61e6;
+  --mv-primary: #5155bc;
+  --mv-secondary: #4448a0;
   --mv-accent: #22c55e;
   --mv-surface: #ffffff;
   --mv-muted: #64748b;
-  --mv-bg-start: #696cff;
-  --mv-bg-end: #5f61e6;
-  --bs-primary: #696cff;
+  --mv-bg-start: #5155bc;
+  --mv-bg-end: #4448a0;
+  --bs-primary: #5155bc;
 }
 
-/* Premium gradient background wrapper - MATCHES DOCTOR SIDEBAR/NAVBAR */
+/* Premium gradient background wrapper */
 .mv-auth-bg{
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #696cff 0%, #5f61e6 100%);
+  background: linear-gradient(180deg, #5155bc 0%, #4448a0 100%);
 }
 
 /* Glass auth card */
@@ -25,14 +25,14 @@
   background: rgba(255,255,255,0.95) !important;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.8) !important;
-  box-shadow: 0 25px 50px rgba(105,108,255,.2) !important;
+  box-shadow: 0 25px 50px rgba(81,85,188,.2) !important;
   border-radius: 20px !important;
 }
 
 /* Brand logo container */
 .brand-logo-box{
   background:#fff; border-radius:12px; padding:8px 14px; display:inline-flex; align-items:center; gap:8px;
-  box-shadow: 0 10px 30px rgba(105,108,255,.15);
+  box-shadow: 0 10px 30px rgba(81,85,188,.15);
 }
 .brand-logo-box img{ height:36px; width:auto; display:block; }
 
@@ -45,7 +45,7 @@
 }
 .mv-input .form-control:focus{ 
   border-color: var(--mv-primary); 
-  box-shadow: 0 0 0 3px rgba(105,108,255,0.12);
+  box-shadow: 0 0 0 3px rgba(81,85,188,0.12);
 }
 .mv-input .input-group-text{ border-radius:12px; background: #f8f9fa; border-color: #e4e7ec; }
 .mv-primary-btn{ 
@@ -54,12 +54,12 @@
   font-weight:600; 
   background: linear-gradient(135deg, var(--mv-primary) 0%, var(--mv-secondary) 100%) !important;
   border: none !important;
-  box-shadow: 0 4px 15px rgba(105,108,255,0.35);
+  box-shadow: 0 4px 15px rgba(81,85,188,0.35);
   transition: all 0.3s ease;
 }
 .mv-primary-btn:hover{
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(105,108,255,0.45);
+  box-shadow: 0 8px 25px rgba(81,85,188,0.45);
 }
 .mv-link-muted{ color: var(--mv-muted) !important; }
 
@@ -125,13 +125,13 @@ a:hover{ color: var(--mv-secondary); }
 .role-card:hover{
   border-color: var(--mv-primary);
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(105,108,255,0.15);
+  box-shadow: 0 12px 30px rgba(81,85,188,0.15);
 }
 .role-card .icon-wrapper{
   width: 64px;
   height: 64px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(105,108,255,0.1) 0%, rgba(95,97,230,0.1) 100%);
+  background: linear-gradient(135deg, rgba(81,85,188,0.1) 0%, rgba(68,72,160,0.1) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
