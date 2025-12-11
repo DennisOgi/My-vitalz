@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('marketplace_drug_id');
-            $table->decimal('wholesale_price', 12, 2);
-            $table->decimal('retail_price', 12, 2);
+            $table->decimal('wholesale_price', 12, 2)->default(0);
+            $table->decimal('retail_price', 12, 2)->default(0);
             $table->decimal('markup_percentage', 5, 2)->default(0);
             $table->integer('stock_quantity')->default(0);
             $table->boolean('is_featured')->default(false);
