@@ -5,8 +5,8 @@ echo "Clearing caches..."
 php artisan config:clear
 php artisan cache:clear
 
-echo "Running migrations..."
-php artisan migrate --force
+echo "Running migrations (fresh start)..."
+php artisan migrate:fresh --force
 
 echo "Seeding database..."
 php artisan db:seed --class=TestAccountsSeeder --force
