@@ -143,3 +143,14 @@ Route::get('/payconfirm', 'dashboardController@payconfirm');
      return 'View cache cleared';
  });
 
+// Manual Database Reset & Seed (For Debugging)
+Route::get('/db-reset', function() {
+    try {
+        Artisan::call('migrate:fresh', ['--force' => true]);
+        Artisan::call('db:seed', ['--class' => 'TestAccountsSeeder', '--force' => true]);
+        return 'Database reset and seeded successfully!';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
