@@ -30,8 +30,12 @@ COPY . .
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# Copy and set permissions for entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Expose port
 EXPOSE 8000
 
 # Start command
-CMD ["sh", "-c", "php artisan migrate --force && php artisan db:seed --class=TestAccountsSeeder --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
+ENTRYPOINT ["docker-entrypoint.sh"]
