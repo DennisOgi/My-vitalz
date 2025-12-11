@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('storefront_order_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('doctor_inventory_id');
-            $table->string('drug_name');
+            $table->unsignedBigInteger('marketplace_drug_id')->nullable(); // Renamed from doctor_inventory_id to match seeder
+            $table->unsignedBigInteger('doctor_inventory_id')->nullable(); // Kept for backward compatibility if needed
+            $table->string('drug_name')->nullable();
             $table->integer('quantity');
             $table->decimal('unit_price', 12, 2);
-            $table->decimal('wholesale_price', 12, 2);
-            $table->decimal('subtotal', 12, 2);
+            $table->decimal('wholesale_price', 12, 2)->default(0);
+            $table->decimal('subtotal', 12, 2)->default(0);
             $table->timestamps();
             
             $table->index('order_id');
