@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         // Seed marketplace with sales reps and pharmaceutical products
         $this->call([
             MarketplaceSeeder::class,
+            TestAccountsSeeder::class,
         ]);
     }
 }
