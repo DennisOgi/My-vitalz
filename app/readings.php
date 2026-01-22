@@ -171,6 +171,8 @@
                       <tr>
                           <th>Date</th>
                         <th>Readings</th>
+                        <th>Status</th>
+                        <th>What Next</th>
                         
                         
                       </tr>
@@ -183,6 +185,9 @@
                       <tr>
                           <td><?php  echo \App\functions::format_date_time($blood_pressure_readings[$i]->date); ?></td>
                         <td><?php  echo $blood_pressure_readings[$i]->reading." ".$blood_pressure_readings[$i]->si_unit; ?></td>
+                        <?php $bpInfo = \App\functions::classify_blood_pressure($blood_pressure_readings[$i]->reading); ?>
+                        <td class="<?php echo $bpInfo['color']; ?> fw-semibold"><i class="bx <?php echo $bpInfo['icon']; ?>"></i> <?php echo $bpInfo['label']; ?></td>
+                        <td><?php echo $bpInfo['next_steps']; ?></td>
                         
                         
                       </tr>

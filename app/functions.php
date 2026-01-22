@@ -192,6 +192,128 @@ class Functions
         
         return $formatted;
     }
+
+    public static function parse_blood_pressure($reading)
+    {
+        if (!is_string($reading)) {
+            return null;
+        }
+
+        $reading = trim($reading);
+
+        if (!preg_match('/^(\d{2,3})\s*\/\s*(\d{2,3})$/', $reading, $m)) {
+            return null;
+        }
+
+        $systolic = intval($m[1]);
+        $diastolic = intval($m[2]);
+
+        if ($systolic <= 0 || $diastolic <= 0) {
+            return null;
+        }
+
+        if ($systolic < $diastolic) {
+            return null;
+        }
+
+        if ($systolic < 50 || $systolic > 300 || $diastolic < 30 || $diastolic > 200) {
+            return null;
+        }
+
+        return [
+            'systolic' => $systolic,
+            'diastolic' => $diastolic,
+        ];
+    }
+
+    public static function classify_blood_pressure($reading)
+    {
+        $parsed = self::parse_blood_pressure($reading);
+        if ($parsed === null) {
+            return [
+                'label' => 'Unknown',
+                'classification' => 'Unable to classify',
+                'next_steps' => 'Please enter blood pressure in the format systolic/diastolic (e.g., 120/80).',
+                'color' => 'text-muted',
+                'icon' => 'bx-minus',
+                'systolic' => null,
+                'diastolic' => null,
+            ];
+        }
+
+        $sys = $parsed['systolic'];
+        $dia = $parsed['diastolic'];
+
+        if ($sys >= 180 || $dia >= 120) {
+            return [
+                'label' => 'Too High',
+                'classification' => 'According to WHO standards your BP is too high',
+                'next_steps' => 'Please take your drugs immediately and consult your virtual doctor immediately or visit your physician.',
+                'color' => 'text-danger',
+                'icon' => 'bx-error-circle',
+                'systolic' => $sys,
+                'diastolic' => $dia,
+            ];
+        }
+
+        if ($sys >= 160 || $dia >= 100) {
+            return [
+                'label' => 'Very High',
+                'classification' => 'According to WHO standards your BP is very high',
+                'next_steps' => 'Please take your drugs as prescribed and consult your virtual doctor.',
+                'color' => 'text-danger',
+                'icon' => 'bx-error-circle',
+                'systolic' => $sys,
+                'diastolic' => $dia,
+            ];
+        }
+
+        if ($sys >= 140 || $dia >= 90) {
+            return [
+                'label' => 'High',
+                'classification' => 'According to WHO standards your BP is high',
+                'next_steps' => 'Please take your drugs as prescribed and consult your virtual doctor.',
+                'color' => 'text-warning',
+                'icon' => 'bx-error',
+                'systolic' => $sys,
+                'diastolic' => $dia,
+            ];
+        }
+
+        if ($sys >= 130 || $dia >= 85) {
+            return [
+                'label' => 'Slightly High',
+                'classification' => 'According to WHO standards your BP is slightly high',
+                'next_steps' => 'Please monitor your blood pressure and consult your virtual doctor if it stays high.',
+                'color' => 'text-warning',
+                'icon' => 'bx-error',
+                'systolic' => $sys,
+                'diastolic' => $dia,
+            ];
+        }
+
+        if ($sys <= 100 || $dia <= 60) {
+            return [
+                'label' => 'Very Low',
+                'classification' => 'According to WHO standards your BP is very low',
+                'next_steps' => 'Consult your virtual doctor immediately or visit your physician, especially if you feel weak, dizzy, or faint.',
+                'color' => 'text-danger',
+                'icon' => 'bx-error-circle',
+                'systolic' => $sys,
+                'diastolic' => $dia,
+            ];
+        }
+
+        return [
+            'label' => 'Normal',
+            'classification' => 'According to WHO standards your BP is normal',
+            'next_steps' => 'Continue healthy habits and take your medications as prescribed.',
+            'color' => 'text-success',
+            'icon' => 'bx-check',
+            'systolic' => $sys,
+            'diastolic' => $dia,
+        ];
+    }
     
     
 }

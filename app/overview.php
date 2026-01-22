@@ -79,7 +79,17 @@
                           <span class="card-title mb-2 txt-color-purple h3"><?php if(empty($blood_pressure_readings)){echo '0/0';}else{ echo $blood_pressure_readings[count($blood_pressure_readings)-1]->reading; }?></span><small class="txt-color-purple"><?php if(empty($blood_pressure_readings)){echo '';}else{ echo $blood_pressure_readings[count($blood_pressure_readings)-1]->si_unit; }?></small><br>
                         <span class="fw-semibold d-block mb-1">Blood Pressure</span>
                           <small class="text-muted fw-semibold fs-9">Measured <?php if(empty($blood_pressure_readings)){echo '-/-/-'; }else{ echo \App\functions::format_date_time($blood_pressure_readings[count($blood_pressure_readings)-1]->date); }?></small><br>
-                          <small class="text-success fw-semibold"><i class="bx bx-check"></i> Normal</small>
+                          <?php
+                          $bpInfo = null;
+                          if (!empty($blood_pressure_readings)) {
+                              $bpLatest = $blood_pressure_readings[count($blood_pressure_readings)-1];
+                              $bpInfo = \App\functions::classify_blood_pressure($bpLatest->reading);
+                          } else {
+                              $bpInfo = \App\functions::classify_blood_pressure('');
+                          }
+                          ?>
+                          <small class="<?php echo $bpInfo['color']; ?> fw-semibold"><i class="bx <?php echo $bpInfo['icon']; ?>"></i> <?php echo $bpInfo['label']; ?></small><br>
+                          <small class="text-muted fw-semibold fs-9">What Next: <?php echo $bpInfo['next_steps']; ?></small>
                         </div>
                       </div>
                     </div>

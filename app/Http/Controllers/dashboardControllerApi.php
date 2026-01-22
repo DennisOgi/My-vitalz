@@ -52,6 +52,15 @@ class dashboardControllerApi extends Controller
             $vitalz = $this->sanitizeInput($request->input('vitalz'));
             $reading = $this->sanitizeInput($request->input('vital_reading'));
             $si_unit = $this->sanitizeInput($request->input('si_unit'));
+
+            if (intval($vitalz) === 2) {
+                $bp = Functions::parse_blood_pressure($reading);
+                if ($bp === null) {
+                    $a_type = "warning";
+                    $a_message = "Please enter blood pressure in the format systolic/diastolic (e.g., 120/80).";
+                    return response()->json(array('status' => 'error', 'a_type' => $a_type, 'a_message' => $a_message));
+                }
+            }
              
             Functions::save_vital_reading($uid, $vitalz, $reading, $si_unit);
             $a_type="success";
